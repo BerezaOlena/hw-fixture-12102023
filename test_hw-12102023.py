@@ -17,6 +17,7 @@ def print_smiling_faces():
 
 @pytest.fixture(scope="class") # на весь клас
 def teardown_class(self):
+    yield
     print("\nquit browser for test suite..")
     self.browser.quit()
 
