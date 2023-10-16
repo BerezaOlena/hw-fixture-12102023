@@ -4,24 +4,24 @@ from selenium.webdriver.common.by import By
 
 link = "https://anc.ua/"
 
+
 @pytest.fixture(scope="class") # на весь клас
 def browser():
     print("\nstart browser for test suite..")
     browser = webdriver.Chrome()
-    return browser
+    yield browser
+    print("\nquit browser for test suite..")
+    browser.quit()
+
 
 @pytest.fixture(autouse=True) # в кінці кожного тесту в класі
 def print_smiling_faces():
     yield
     print('\nbutton or element is OK')
 
-@pytest.fixture(scope="class") # на весь клас
-def teardown_class(self):
-    yield
-    print("\nquit browser for test suite..")
-    self.browser.quit()
 
 class TestAncheadermenu():
+
     def test_img_anc(self, browser):
         browser.get(link)
         browser.find_element(By.XPATH, "//img[@src='https://storage.googleapis.com/static-storage/logo.svg']")
