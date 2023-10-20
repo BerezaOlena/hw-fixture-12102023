@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 link = "https://anc.ua/"
 
 
-@pytest.fixture(scope="class") # на весь клас
+@pytest.fixture(scope="class") # на весь клас, за замовченням "function"
 def browser():
     print("\nstart browser for test suite..")
     browser = webdriver.Chrome()
@@ -15,7 +15,7 @@ def browser():
 
 
 @pytest.fixture(autouse=True) # в кінці кожного тесту в класі
-def print_smiling_faces():
+def print_ok():
     yield
     print('\nbutton or element is OK')
 
@@ -51,6 +51,6 @@ class TestAncheadermenu():
         browser.find_element(By.XPATH, "//a[@title='Кошик']")
 
 
-#pytest -s test_hw-12102023.py
+#pytest -s test_hw_12102023.py
 
 
